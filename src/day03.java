@@ -9,31 +9,16 @@ public class day03 {
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
 
-        driver.get("https://www.google.com/");
-        driver.findElement(By.linkText("English")).click();
+        driver.manage().window().maximize();
+        String url = "https://www.google.com/";
 
-        driver.findElement(By.name("q")).sendKeys("Selenium");
+        driver.get(url);
 
-        Thread.sleep(2000);
-        driver.findElement(By.name("btnK")).click();
+        String expectedTitle = "Google";
+        String actualTitle = driver.getTitle();
 
-//Test 1: Verify link of wikipedia is correct
-        String expectedWikiLink = "https://en.wikipedia.org/wiki/Selenium_(software)";
-
-        Thread.sleep(3000);
-
-//Dont worry about xpath at the moment!
-        String actualWikiLink = driver.findElement(By.xpath("//a[@class='ruhjFe NJLBac fl']")).getAttribute("href");
-
-        System.out.println("Test result passed: " + expectedWikiLink.equalsIgnoreCase(actualWikiLink));
-
-        WebElement resultItem = driver.findElement(By.className("LC20lb"));
-
-        System.out.println("Does first item has Selenium keyword: " + resultItem.getText().contains("Selenium"));
-
-        System.out.println(driver.findElement(By.linkText("Shopping")).isEnabled());
+        System.out.println(expectedTitle.equals(actualTitle));
 
         driver.close();
-
     }
 }
